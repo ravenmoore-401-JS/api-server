@@ -9,7 +9,7 @@
 - [ci/cd](https://github.com/ravenmoore-401-JS/api-server/actions) (GitHub Actions)
 - [back-end server url](https://rm-api-server.herokuapp.com/)
 
-- [submit PR](https://github.com/ravenmoore-401-JS/api-server/pull/3)
+- [submit PR](https://github.com/ravenmoore-401-JS/api-server/pull/1)
 
 ### Setup
 
