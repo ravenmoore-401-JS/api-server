@@ -1,8 +1,10 @@
 'use strict';
 
+const model = require('./dragons-model');
+
 class DragonCollection {
   
-  constructor(model){
+  constructor(){
     this.model = model;
   }
 

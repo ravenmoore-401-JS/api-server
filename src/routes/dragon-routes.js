@@ -2,8 +2,7 @@
 
 const express = require('express');
 const DragonCollection = require('../models/dragons-collection');
-const dragonModel = require('../models/dragons-model');
-const dragon = new DragonCollection(dragonModel);
+const dragon = new DragonCollection();
 
 const mongoose = require('mongoose');
 
