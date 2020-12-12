@@ -4,36 +4,39 @@ const express = require('express');
 const DragonCollection = require('../models/dragons-collection');
 const dragon = new DragonCollection();
 
-const mongoose = require('mongoose');
-
 const router = express.Router();
 
 
-
-const createDragon = async(request,response)=>{
-  let newDragon = await dragon.create(dragon);
-  console.log('dragon created', newDragon);
-  mongoose.disconnect();
-};
-const getOneDragon = async(request,response)=>{
-  let oneDragon = await dragon.get(dragon._id);
-  console.log('one Dragon', oneDragon);
-  mongoose.disconnect();
-};
 const getDragons = async(request,response)=>{
   let allDragons = await dragon.get();
   console.log('all Dragons', allDragons);
-  mongoose.disconnect();
+  response.status(200).json(allDragons);
+};
+
+const getOneDragon = async(request,response)=>{
+  const _id = request.params.id;
+  let oneDragon = await dragon.get(_id);
+  console.log('one Dragon', oneDragon);
+  response.status(200).json(oneDragon);
+};
+const createDragon = async(request,response)=>{
+  const dragonInfo = request.body;
+  let newDragon = await dragon.create(dragonInfo);
+  console.log('dragon created', newDragon);
+  await response.status(200).json(newDragon);
 };
 const updateDragon = async(request,response)=>{
-  let update = await dragon.update(dragon._id,dragon);
+  const _id = request.params.id;
+  const dragonInfo = request.body;
+  let update = await dragon.update(_id,dragonInfo);
   console.log('updated dragon', update);
-  mongoose.disconnect();
+  response.status(200).send(update);
 };
 const destroyDragon = async(request,response)=>{
-  let distroy = await dragon.delete(dragon._id);
+  const _id = request.params.id;
+  let distroy = await dragon.delete(_id);
   console.log('deleted the dragon',distroy);
-  mongoose.disconnect();
+  response.status(200).send('dragon deleted.');
 };
 
 router.get('/dragons', getDragons);
